@@ -29,7 +29,7 @@ def create_rag_prompt(context_chunks, user_question):
     # TODO 1: Complete the system prompt for context-based answers
     # Hint: The AI should answer "ONLY" based on provided context
     system_prompt = """You are TechCorp's helpful AI assistant.
-Answer ___ based on the provided context.
+Answer ONLY based on the provided context.
 If the answer is not in the context, say: 'I don't have that information in the provided documents.'
 Be concise and accurate."""  # Replace ___ with "ONLY"
 
@@ -37,14 +37,14 @@ Be concise and accurate."""  # Replace ___ with "ONLY"
     # Hint: Format each chunk as [Document N] followed by content
     context_text = "Context from TechCorp documents:\n\n"
     for i, chunk in enumerate(context_chunks, 1):
-        context_text += f"[Document {i}]\n{___}\n\n"  # Replace ___ with chunk
+        context_text += f"[Document {i}]\n{chunk}\n\n"  # Replace ___ with chunk
 
     # TODO 3: Create the user prompt with context and question
     # Hint: Include context_text and user_question
     user_prompt = f"""
 {context_text}
 
-Question: {___}
+Question: {user_question}
 
 Answer:"""  # Replace ___ with user_question
 
