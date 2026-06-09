@@ -17,9 +17,9 @@ api_key = os.getenv("OPENAI_API_KEY")
 # TODO 1: Initialize LangChain ChatOpenAI client
 # Hint: Use ChatOpenAI(api_key=api_key, base_url=api_base, model="openai/gpt-4.1-mini")
 client = ChatOpenAI(
-    api_key=___,  # Replace ___ with api_key
-    base_url=___,  # Replace ___ with api_base
-    model="___"  # Replace ___ with openai/gpt-4.1-mini
+    api_key=api_key,  # Replace ___ with api_key
+    base_url=api_base,  # Replace ___ with api_base
+    model="openai/gpt-4.1-mini"  # Replace ___ with openai/gpt-4.1-mini
 )
 
 print("✅ OpenAI client initialized")
@@ -31,11 +31,11 @@ def test_generation():
 
     # TODO 2: Set temperature for focused answers
     # Hint: Use 0.3 for deterministic responses
-    temperature = ___  # Replace ___ with 0.3
+    temperature = 0.3  # Replace ___ with 0.3
 
     # TODO 3: Set max tokens for concise responses
     # Hint: Use 500 to limit response length
-    max_tokens = ___  # Replace ___ with 500
+    max_tokens = 500  # Replace ___ with 500
 
     # Update client with temperature and max_tokens
     client.temperature = temperature
@@ -46,7 +46,7 @@ def test_generation():
     # Create messages for the query
     messages = [
         {"role": "system", "content": "You are a helpful AI assistant."},
-        {"role": "user", "content": "What is RAG in AI? Answer in one sentence."}
+        {"role": "user", "content": "What are LRMs(Large Reasoning Models) in AI? Answer in two concise yet informative sentences about how they're used and why they're important. Give examples."}
     ]
 
     # Generate response using invoke method
