@@ -42,8 +42,8 @@ def rag_pipeline(user_question):
     # TODO 1: Perform semantic search to find relevant chunks
     # Hint: Use collection.query(query_embeddings=[...], n_results=3)
     results = collection.query(
-        query_embeddings=[___],  # Replace ___ with query_embedding
-        n_results=___  # Replace ___ with 3
+        query_embeddings=[query_embedding],  # Replace ___ with query_embedding
+        n_results=3  # Replace ___ with 3
     )
 
     retrieved_chunks = results['documents'][0]
@@ -68,7 +68,7 @@ If the answer is not in the context, say: 'I don't have that information in the 
 
     # TODO 3: Complete the user prompt with question
     # Hint: Add user_question after "Question:"
-    user_prompt = f"{context_text}\nQuestion: {___}\n\nAnswer:"  # Replace ___ with user_question
+    user_prompt = f"{context_text}\nQuestion: {user_question}\n\nAnswer:"  # Replace ___ with user_question
 
     print("   ✅ Context prepared with retrieved documents")
 
@@ -78,8 +78,8 @@ If the answer is not in the context, say: 'I don't have that information in the 
     # TODO 4: Create messages for LLM with system and user prompts
     # Hint: Use system_prompt and user_prompt
     messages = [
-        {"role": "system", "content": ___},  # Replace ___ with system_prompt
-        {"role": "user", "content": ___}     # Replace ___ with user_prompt
+        {"role": "system", "content": system_prompt},  # Replace ___ with system_prompt
+        {"role": "user", "content": user_prompt}     # Replace ___ with user_prompt
     ]
 
     response = client_llm.invoke(messages)
@@ -90,7 +90,7 @@ If the answer is not in the context, say: 'I don't have that information in the 
     sources = [meta['source'] for meta in metadatas]
     unique_sources = list(set(sources))
 
-    final_response = f"{answer}\n\n📎 Sources: {', '.join(___)}"  # Replace ___ with unique_sources
+    final_response = f"{answer}\n\n📎 Sources: {', '.join(unique_sources)}"  # Replace ___ with unique_sources
 
     return final_response
 
@@ -99,9 +99,9 @@ def test_rag_pipeline():
     """Test with sample questions"""
 
     test_questions = [
-        "Can I bring my dog to the office?",
-        "How many vacation days do I get?",
-        "What is the remote work policy?"
+        "Can I bring my hamster to the office?",
+        "How many total vacation days will I have accrued in May?",
+        "What is the remote work policy if im working from home?"
     ]
 
     for question in test_questions:
